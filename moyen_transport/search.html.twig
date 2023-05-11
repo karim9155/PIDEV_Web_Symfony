@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search Moyens{% endblock %}
+
+{% block body %}
+<div class="container-fluid px-4" style="margin-left:350px ;">
+
+<br>
+    <br>
+    <br>
+    <h1>Search Events By Marque :</h1>
+    <br>
+
+ <div class="forms-sample">
+    <div class="form-group">
+        <div class="input-group">
+
+            {{ form_start(form, { 'attr': {'id': 'search-form'} }) }}
+            <div class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch">
+
+            {{ form_row(form.marque) }}
+            </div>
+            <br>
+
+
+            <button type="submit" class="btn btn-primary">Search
+                <i class="fas fa-search"></i>
+            </button>
+
+            <a href="{{path('app_moyen_transport_new')}}" class="btn btn-dark">Return</a>
+             {{ form_end(form) }}
+
+        </div>
+    </div>
+</div>
+
+
+
+    <div id="search-results">
+        {% if moys %}
+            <h2>Results :</h2>
+            <ul>
+                {% for moy in moys %}
+                    <li>{{ moy.getID()}} - {{ moy.getTypeVehicule() }} -  {{ moy.getMarque() }} -{{ moy.getCapacite() }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <script src="{{ asset('build/jquery.min.js') }}"></script>
+    <script src="{{ asset('build/jquery.form.min.js') }}"></script>
+    <script>
+        $(function() {
+            $('#search-form').submit(function(event) {
+                event.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function(data) {
+                        $('#search-results').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+{% endblock %}

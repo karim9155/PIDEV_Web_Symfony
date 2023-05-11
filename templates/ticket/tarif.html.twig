@@ -1,0 +1,40 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block body %}
+	<div id="main">
+		<!-- Post -->
+		<article class="post featured">
+			<header class="major">
+				<span class="date">April 09, 2023</span>
+				<h1 style="font-size:80px">TARIFS TICKET
+					<br>
+					BUS , METRO , TGM
+				</h1>
+			</header>
+			<div class="section-content" style="margin: 0 auto;">
+				<div class="row">
+					<div class="card-deck">
+						{% for ticket in tickets %}
+							<div class="col-6 col-md-4 justify-content-center col-lg-6"">
+								<div class="card border-0 shadow mb-4">
+<div id="image-container" style="text-align: center;">
+<img src="{{asset('Front/images/capture.jpg')}}" style="border-radius: 20%; " width="50%" alt="...">
+</div>
+									<div class="card-body">
+									<h5 class="card-text">
+											<i class="fas fa-dollar-sign"></i>
+											{{ ticket.prix }} <span>D</span></h5>
+										<h4 class="card-text">{{ ticket.nomTicket }} </h4>
+			    	<a href="{{ path('app_tick_index') }}" style="font-size: 24px">
+					Acheter <span>Ticket</span></a>
+			
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+{% endblock %}

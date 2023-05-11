@@ -1,0 +1,144 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block body %}
+   <div id="main">
+		<div style="margin-top:70px ; margin-right:1100px">
+			<h3>
+				<i class="bi bi-list-ul"></i>
+				Liste des Reservations
+			</h3>
+<div class="d-flex justify-content-center ">
+		{% for type, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ type }} alert-dismissible fade show d-flex align-items-center">
+					<i class="bi bi-check-circle me-2"></i>
+					<div>
+						{{ message }}
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+
+			{% endfor %}
+		{% endfor %}
+	</div>
+			<script>
+				var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+			</script>
+
+		</div>
+	</center>
+	<br>
+	<div >
+		<form class="form-inline">
+			<div class="input-group">
+				<input class="form-control mr-sm-2" id="date" name="date" type="search" placeholder="Search.." onkeyup="myFunction()" aria-label="Search" style="width: 400px;">
+				<div class="input-group-append">
+					<span class="input-group-text">
+						<i class="bi bi-search"></i>
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div style="background-color: white">
+		<table class="table table-bordered border-primary" id="myTable">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Date_reservation</th>
+					<th>Itineraire</th>
+					<th>Moyen Transport</th>
+					<th>Heure_depart</th>
+					<th>Heure_arrive</th>
+					<th>Type_ticket</th>
+					<th>Status</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for reservation in reservations %}
+					<tr>
+						<td>{{ reservation.id }}</td>
+						<td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d') : '' }}</td>
+						<td>{{ reservation.idIt.ptsdepart ~ ' => ' ~ reservation.idIt.ptsarrive }}</td>
+						<td>{{ reservation.idMoy.typeVehicule }}</td>
+						<td>{{ reservation.heureDepart ? reservation.heureDepart|date('H:i:s') : '' }}</td>
+						<td>{{ reservation.heureArrive ? reservation.heureArrive|date('H:i:s') : ''}}</td>
+						<td>{{ reservation.typeTicket }}</td>
+						{#<td><span class="badge bg-danger">{{ reservation.status }}</span></td>#}
+						<td>
+							{% if reservation.status == "En attente" %}
+								<span class="badge bg-danger">{{ reservation.status }}</span>
+							{% elseif reservation.status == "Confirmed" %}
+								<span class="badge bg-primary">{{ reservation.status }}</span>
+							{% else %}
+								<span class="badge">{{ reservation.status }}</span>
+							{% endif %}
+						</td>
+
+
+						<td>
+							<a href="{{ path('app_res_show', {'id': reservation.id}) }}">
+								<button type="button" class="btn btn-warning" title="Afficher details">
+									<i class="bi bi-eye me-2"></i>Afficher</button>
+							</a>
+							<a href="{{ path('app_res_edit', {'id': reservation.id}) }}">
+								<button type="button" class="btn btn-success" title="Modifier Reservation">
+									<i class="bi bi-pencil me-2"></i>Modifier</button>
+							</a>
+
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<main id="main" class="main">
+		{{ knp_pagination_render(reservations) }}
+	</main>
+
+
+	<script>
+		function myFunction() {
+var input,
+filter1,
+filter2,
+table,
+tr,
+td1,
+td2,
+i,
+txtValue1,
+txtValue2;
+input = document.getElementById("date");
+filter1 = input.value.toUpperCase();
+filter2 = input.value.toUpperCase(); // Second filter value
+
+table = document.getElementById("myTable");
+tr = table.getElementsByTagName("tr");
+for (i = 0; i < tr.length; i++) {
+td1 = tr[i].getElementsByTagName("td")[3]; // First column to search
+td2 = tr[i].getElementsByTagName("td")[2]; // Second column to search
+if (td1 || td2) {
+txtValue1 = td1.textContent || td1.innerText;
+txtValue2 = td2.textContent || td2.innerText;
+if (txtValue1.toUpperCase().indexOf(filter1) > -1 || txtValue2.toUpperCase().indexOf(filter2) > -1) {
+tr[i].style.display = "";
+} else {
+tr[i].style.display = "none";
+}
+}
+}
+}
+	</script>
+
+<div>
+{% endblock %}

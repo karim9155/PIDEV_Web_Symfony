@@ -1,0 +1,131 @@
+{% extends 'Front/front.html.twig'%}
+
+{% block title %}MoyenTransport{% endblock %}
+
+{% block body %}
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin: 100px 300px 100px">
+<div class="card" style="background-color: rgba(255, 249, 232, 0.8);padding: 20px;">
+    <div class="col-lg-15">
+   
+    <div class="card-body">
+    <h1>MoyenTransport</h1>
+     
+    <table class="table">
+        <tbody>
+            <tr class="table-primary">
+                <th>ID</th>
+                <td>{{ moyen_transport.id }}</td>
+            </tr>
+            <tr>
+                <th>Matricule</th>
+                <td>{{ moyen_transport.matricule }}</td>
+            </tr>
+            <tr>
+                <th>Num</th>
+                <td>{{ moyen_transport.num }}</td>
+            </tr>
+           
+            <tr>
+                <th>Type_vehicule</th>
+                <td>{{ moyen_transport.typeVehicule }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ moyen_transport.marque }}</td>
+            </tr>
+            
+        </tbody>
+        <style>
+            #stars
+            {
+                width:200px;
+                height:200px;
+                margin:50px auto;   
+            }
+            lt
+            {
+                display:inline-block;
+                {# font-size:20px; #}
+                padding:1px;
+                color:#ccc;
+            }
+            .hovered-stars
+            {
+                color:#FFCC36;
+            }
+            .clicked-stars
+            {
+                color:sandybrown;
+            }
+</style>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('js/jquery-ui.min.css') }}">
+ <script
+            src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+            crossorigin="anonymous"></script>
+<script>
+var data;
+    $(document).ready(function(){
+        $("lt").mouseover(function(){
+            var current = $(this);
+            $("lt").each(function(index){
+                $(this).addClass("hovered-stars");
+                if(index == current.index())
+                {
+                    return false;
+                }
+            })
+        })
+        $("lt").mouseleave(function(){
+            $("lt").removeClass("hovered-stars");
+        });
+        $("lt i").click(function(){
+            $("lt").removeClass("clicked-stars");
+            $(".hovered-stars").addClass("clicked-stars");
+            var val=$(".clicked-stars").length;
+            
+            console.log(val);
+            
+        
+        $.ajax({
+            type: "POST",
+            url: "{{path('star',{id:moyen_transport.getId()})}}",
+            data: {value:val},
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+                $("#msg").html((response.toFixed(2))+"/5");
+            },
+            error: function(jqXHR, status, error) {
+            console.log(error);
+            
+        }
+        });
+        
+        });
+    
+    })
+</script>
+    </table>
+    </br>
+    <h5>Noter ce moyen </h5>
+   <div id="stars">
+                            <ul>
+                                <lt><i value="1" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="2" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="3" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="4" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="5" class="fa fa-star fa-fw"></i></lt>
+                                <div id="msg">{{moyen_transport.note | number_format(2) }}/5</div>
+                            </ul>
+                        </div>
+    <a class="btn btn-outline-dark" href="{{ path('lignes_urbaine') }}">back to list</a>
+
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

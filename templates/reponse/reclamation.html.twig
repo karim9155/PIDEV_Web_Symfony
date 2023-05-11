@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+	Liste des Reclamation
+{% endblock %}
+
+
+{% block body %}
+<main id="main" class="main">
+            <!-- Recent Sales -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+             
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Reclamations</h5>
+                    
+                  <table class="table table-borderless datatable">
+                    <thead>
+                      <tr>
+                        <th scope="col">Objet</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Statut</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">User</th>
+						<th scope="col">Repondre</th>
+            <th><a href="{{ path ('stat') }}" class="btn btn-success btn-fw float-right">Statistique % Sujet</a></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+
+{% for data in list %}
+							
+										
+                      <tr>
+                      <td>{{ data.objet }}</td>
+                        <td>{{ data.message_rec }}</td>
+						 <td>{{ data.statut }}</td>
+                        <td>{{ data.date_rec|date("m/d/Y") }}</td>
+						 <td>{{ data.idUser.prenom }}</td>
+						 <td><a href="{{ path('add_reponse', {'id': data.id_reclamation}) }}"  class="btn btn-outline-success btn-fw;">
+											Repondre</a></td>
+                        <td><span class="badge bg-success">Approved</span></td>
+                      </tr>
+
+{% endfor %}
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div><!-- End Recent Sales -->
+
+
+  </main>
+						{% endblock %}

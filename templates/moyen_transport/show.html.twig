@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MoyenTransport{% endblock %}
+
+{% block body %}
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin: 100px 300px 100px">
+    <div class="col-lg-15">
+    <div class="card">
+    <div class="card-body">
+    <h1>MoyenTransport</h1>
+     
+    <table class="table">
+        <tbody>
+            <tr class="table-primary">
+                <th>ID</th>
+                <td>{{ moyen_transport.id }}</td>
+            </tr>
+            <tr>
+                <th>Matricule</th>
+                <td>{{ moyen_transport.matricule }}</td>
+            </tr>
+            <tr>
+                <th>Num</th>
+                <td>{{ moyen_transport.num }}</td>
+            </tr>
+            <tr>
+                <th>Capacite</th>
+                <td>{{ moyen_transport.capacite }}</td>
+            </tr>
+            <tr>
+                <th>Type_vehicule</th>
+                <td>{{ moyen_transport.typeVehicule }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ moyen_transport.marque }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ moyen_transport.etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-dark" href="{{ path('app_moyen_transport_index') }}">back to list</a>
+
+    <a class="btn btn-outline-info" href="{{ path('app_moyen_transport_edit', {'id': moyen_transport.id}) }}">edit</a>
+    {{ include('moyen_transport/_delete_form.html.twig') }}
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

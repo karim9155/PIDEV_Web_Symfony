@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+	Liste des Reclamations repondus
+{% endblock %}
+
+
+{% block body %}
+<main id="main" class="main">
+
+<style>
+        table {
+            width: 80%;
+            margin: 0 auto;
+        }
+        td, th {
+            font-size: 0.8rem;
+            padding: 0.5rem;
+        }
+    </style>
+
+	<div class="row ">
+		<div class="col-12 grid-margin">
+			<div class="card">
+				<div class="card-body">
+
+					<h4 class="card-title">Liste des reclamations repondus</h4>
+
+
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>
+										Sujet   
+									</th>
+									<th>
+										Text reclamation
+									</th>
+									<th>
+										text reponse
+									</th>
+									
+									<th>
+										Suppression
+									</th>
+									<th>
+										Modification
+									</th>
+
+								</tr>
+							</thead>
+
+							{% for data in list %}
+								<tr>
+
+									<td>
+										{{ data.reclamation.objet }}
+									</td>
+									<td>
+										{{ data.reclamation.message_rec }}
+									</td>
+									<td>
+										{{ data.text_rep }}
+                                        </td>
+									
+									<td>
+                                    
+										<a href="{{ path('delete_reponse', {'id': data.id_reponse}) }}"  class="btn btn-outline-danger btn-fw;">Supprimer</a>
+									</td>
+
+                                   
+									<td>
+										<a  href="{{ path('update_reponse', {'id': data.id_reponse}) }}" class="btn btn-outline-warning btn-fw;">
+											Modifier</a>
+									</td>
+								</tr>
+
+							{% endfor %}
+
+							    
+	</div>
+     <div class="text-center"class="pagination">
+		{{ knp_pagination_render(list) }}
+                   </main>
+						{% endblock %}
+						

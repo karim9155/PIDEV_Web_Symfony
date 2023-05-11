@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}etats des utilisateurs{% endblock %}
+
+{% block body %}
+<div class="row" style="text-align: center;align-items: center;justify-content: center;margin: 100px 500px 30px;">  
+    <h1>UserState index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user_state in user_states %}
+            <tr>
+                <td>{{ user_state.id }}</td>
+                <td>{{ user_state.status }}</td>
+                <td>
+                    <a href="{{ path('app_user_state_show', {'id': user_state.id}) }}">show</a>
+                    <a href="{{ path('app_user_state_edit', {'id': user_state.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas de roles</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_state_new') }}">Ajouter</a>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block body %}
+   <div id="main">
+           <!-- Post -->
+	
+		  <header class="major">
+		     <span class="date">April 09, 2023</span>
+			  <h1><i class="fas fa-calendar"></i> Detail Reservation</h1>
+
+		  </header>
+    <div class="section-content">
+<div class="d-flex justify-content-center ">
+<section class="post">
+            <div class="section-content">
+	<center>
+		<div style="margin-top:100px ; ">
+			<div style="margin-right:1000px">
+				<a href="{{ path('app_res_index') }}" style="font-size: 24px">
+					<i class="bi bi-arrow-left-circle-fill"></i>
+					Back to list</a>
+			</div>
+			
+
+			<table class="table" style="border-collapse: collapse; width: 40%; border: 1px solid #ddd; background-color: white">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ reservation.id }}</td>
+					</tr>
+					<tr>
+						<th>Date_reservation</th>
+						<td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d') : '' }}</td>
+					</tr>
+					<tr>
+						<th>Heure_depart</th>
+						<td>{{ reservation.heureDepart ? reservation.heureDepart|date('H:i:s') : '' }}</td>
+					</tr>
+					<tr>
+						<th>Heure_arrive</th>
+						<td>{{ reservation.heureArrive ? reservation.heureArrive|date('H:i:s') : ''}}</td>
+					</tr>
+
+					<tr>
+						<th>Type_ticket</th>
+						<td>{{ reservation.typeTicket }}</td>
+					</tr>
+					<tr>
+						<th>Status</th>
+						<td>
+							{% if reservation.status == "En attente" %}
+								<span class="badge bg-pink">{{ reservation.status }}</span>
+							{% elseif reservation.status == "Confirmed" %}
+								<span class="badge bg-primary">{{ reservation.status }}</span>
+							{% else %}
+								<span class="badge">{{ reservation.status }}</span>
+							{% endif %}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+			<a href="{{ path('app_res_edit', {'id': reservation.id}) }}">
+				<span class="d-inline-block">
+					<button class="btn btn-success">
+						<i class="bi bi-arrow-repeat me-2"></i>Modifier</button>
+				</span>
+				<span class="d-inline-block">
+					{{ include('reservation/_delete2_form.html.twig') }}
+				</span> 
+
+			</div>
+		</center>
+		         </div>
+        </section>
+    </div>
+
+  
+</div>
+	{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block body %}
+<center>
+    <div id="main">
+        <!-- Post -->
+        <section class="post">
+         <div style="margin-right:1000px">
+				<a href="{{ path('app_res_index') }}" style="font-size: 24px">
+					<i class="bi bi-arrow-left-circle-fill"></i>
+					Back to list</a>
+			</div>
+            <header class="major">
+             <h1><i class="bi bi-pencil-square me-2"></i>Modifier Votre Reservation</h1>
+            </header>
+
+            <div class="section-content">
+                {{ form_start(form , {'attr': {'class':'form-horizontal','novalidate':'novalidate'}} ) }}
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.date_reservation, {'label':'La Date de votre Reservation' ,'attr':{'placeholder': 'date...'}}) }}
+                     
+                    </fieldset>
+                </div>
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.id_it, {'label':'Itineraire' ,'attr':{'placeholder': 'choisissez itineraire'}}) }}
+                    </fieldset>
+                </div>
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.heure_depart, {'label':'L heure de votre depart ' ,'attr':{'placeholder': 'choisissez heure depart..'}}) }}
+                    </fieldset>
+                </div>
+
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.heure_arrive, {'label':'L heure de votre arriver ' ,'attr':{'placeholder': 'choisissez heure_arrive...'}}) }}
+                    </fieldset>
+                </div>
+               <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.id_moy, {'label':'Moyen de Transport' ,'attr':{'placeholder': 'choisissez un moyen'}}) }}
+                    </fieldset>
+                </div>
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.type_ticket, {'label':'Type Ticket' ,'attr':{'placeholder': 'Le type de ticket'}}) }}
+                    </fieldset>
+                </div>
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.status, {'label':'Statut' ,'attr':{'placeholder': 'status....'}}) }}
+                    </fieldset>
+                </div>
+           {#those fields iduser / idticket are hidden #}
+                <div class="col-md-12" style="display: none;">
+                <fieldset>
+               {{ form_row(form.id_client, {'label':'user' ,'attr':{'placeholder': 'user....', 'style': 'display: none;'}}) }}
+                </fieldset>
+                </div>
+              <div class="col-md-12" style="display: none;">
+              <fieldset>
+              {{ form_row(form.id_ticket, {'label': 'ticket', 'attr': {'placeholder': 'ticket....', 'style': 'display: none;'}}) }}
+              </fieldset>
+               </div>
+              <br>
+                <span class="d-inline-block">
+                        <button type= "submit" class="btn btn-success"> <i class="bi bi-pencil me-2"></i>Modifier</button>
+                </span>
+                <span class="d-inline-block">
+                {{ form_end(form) }}
+                  {{ include('reservation/_delete2_form.html.twig') }}
+                 </span>
+            </div>
+        </section>
+    </div>
+    </center>
+{% endblock %}
+

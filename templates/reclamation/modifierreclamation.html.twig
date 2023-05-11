@@ -1,0 +1,93 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block title %}Mes Reclamations
+{% endblock %}
+
+{% block body %}
+
+<footer id="footer">
+	<section>
+
+
+			{% block form %}
+			{{form_start(form,{'attr': {'novalidate': 'novalidate'}}
+			)}}
+
+
+			<table class="form-table">
+
+				<tr>
+
+					<h1 style="color: white; padding: 45px 20px; font-size: 23px; margin-left: 10px">
+						Veuillez saisir les details de votre reclamation</h1>
+
+					<td>
+						{{ form_label(form.objet,'objet' , {'label_attr': {'style': 'font-size: 20px'}}) }}
+					</td>
+					<td>
+						{{ form_widget(form.objet) }}
+					</td>
+					<td>
+						{{ form_errors(form.objet) }}
+					</td>
+				</tr>
+				<br>
+
+				<tr>
+					<td>
+						{{ form_label(form.message_rec, 'Text reclamation', {'label_attr': {'style': 'font-size: 20px;'}}) }}
+					</td>
+					<td>
+						{{ form_widget(form.message_rec, {'attr': {'rows': 5}})}}
+					</td>
+					<td>
+						{{ form_errors(form.message_rec) }}
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						{{ form_label(form.statut, 'Statut', {'label_attr': {'style': 'font-size: 20px;'}}) }}
+					</td>
+					<td>
+						{{ form_widget(form.statut) }}
+					</td>
+					<td>
+						{{ form_errors(form.statut) }}
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						{{ form_label(form.date_rec, 'Date', {'label_attr': {'style': 'font-size: 20px;'}}) }}
+					</td>
+					<td>
+						{{ form_widget(form.date_rec) }}
+					</td>
+					<td>
+						{{ form_errors(form.date_rec) }}
+					</td>
+				</tr>
+
+
+				<br>
+
+
+				<tr>
+					<td colspan="2">{{ form_widget(form.Reclamer, {'attr': {'style': 'font-size: 18px; padding: 15px 20px; margin-left: 150px; margin-top: 10px;'}}
+						) }}</td>
+				</tr>
+			</table>
+
+
+			{{form_end(form)}}
+		{% endblock %}
+
+
+
+
+
+				
+
+
+						{% endblock %}

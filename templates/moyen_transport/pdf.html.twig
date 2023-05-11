@@ -1,0 +1,39 @@
+<h1 class="align-center">Bienvenue dans votre application SwifTransit </h1>
+<img src="{{ asset(image_path) }}" alt="Image description" width="626px" height="626px">
+<p>Voila la liste de tout les moyens de transport</p>
+
+<table class="table" border="5">
+    <tr>
+         <th scope="col">ID</th>
+                <th scope="col">Matricule</th>
+                <th scope="col">Numéro</th>
+                <th scope="col">Capacite</th>
+                <th scope="col">Type vehicule</th>
+                <th scope="col">Marque</th>
+                <th scope="col">Etat</th>
+                <th scope="col">Station</th>
+                <th scope="col">Ligne</th>
+                
+    </tr>
+    {% for moyen_transport in moyen_transports %}
+        <tbody>
+        <tr>
+                <td>{{ moyen_transport.id }}</td>
+                <td>{{ moyen_transport.matricule }}</td>
+                <td>{{ moyen_transport.num }}</td>
+                <td>{{ moyen_transport.capacite }}</td>
+                <td>{{ moyen_transport.typeVehicule }}</td>
+                <td>{{ moyen_transport.marque }}</td>
+                <td>{{ moyen_transport.etat }}</td>
+                <td>{{ moyen_transport.idLigne.nomLigne }}</td> 
+                <td>{{ moyen_transport.idLigne.typeLigne}}</td> 
+        </tr>
+        </tbody>
+    {% else %}
+        <tr>
+            <td colspan="5">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+</table>

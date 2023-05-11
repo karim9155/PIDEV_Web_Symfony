@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+   <div id="main">
+           <!-- Post -->
+	 <section class="post">
+	<form action="{{ path('app_password_admin') }}" method="post">
+
+		<header class="major">
+		  <span class="date">Welcome </span>
+		   <h1>changer votre mot de passe<br />
+				</h1>
+		  </header>
+			 <div class="form-group">
+       <label for="password">Nouveau mot de passe:</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="confirm_password">Confirmation de mot de passe:</label>
+    <input type="password" id="confirm_password" name="password2" required>
+    </div>
+		
+        <button type="submit" id="submit-btn" class="btn btn-primary">Changer</button>
+</form>
+
+<script>
+    // get the submit button
+    var button1 = document.getElementById('submit-btn');
+
+    // add a click event listener to the submit button
+    button1.addEventListener('click', function(event) {
+        // get the password inputs
+        var passwordInput = document.getElementById('password');
+        var confirmInput = document.getElementById('confirm_password');
+
+        // check if the passwords match
+        if (passwordInput.value === confirmInput.value) {
+            // passwords match, allow the form submission
+            alert('Votre mot de passe a été changé avec succés');
+        } else {
+            // passwords don't match, prevent the form from being submitted
+            event.preventDefault();
+
+            // display an error message
+            alert('Vous devez saisir deux mot de passe identiques');
+        }
+    });
+</script>
+</div>
+{% endblock %}
+
+   
+   
+
+
+
+		
+
+    
+
+   

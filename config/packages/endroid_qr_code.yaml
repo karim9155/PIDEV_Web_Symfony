@@ -1,0 +1,6 @@
+endroid_qr_code:
+    size: 300
+    label: "My QR Code"
+    writer_options:
+        eccLevel: "H"
+        textEncoding: "UTF-8"

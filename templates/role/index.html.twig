@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des roles{% endblock %}
+
+{% block body %}
+    <div class="row" style="text-align: center;align-items: center;justify-content: center;margin: 100px 350px 30px;">
+    <h1>Liste des roles</h1>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for role in roles %}
+            <tr>
+                <td>{{ role.id }}</td>
+                <td>{{ role.nom }}</td>
+                <td>
+                    <a class="btn btn-outline-info" href="{{ path('app_role_show', {'id': role.id}) }}">Afficher</a>
+                    <a class="btn btn-outline-success" href="{{ path('app_role_edit', {'id': role.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas de role</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-success" href="{{ path('app_role_new') }}">Ajouter</a>
+{% endblock %}

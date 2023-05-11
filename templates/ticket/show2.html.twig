@@ -1,0 +1,53 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block body %}
+   <div id="main">
+           <!-- Post -->
+	
+		  <header class="major">
+		     <span class="date">April 09, 2023</span>
+			  <h1><i class="fas fa-calendar"></i> Detail Ticket</h1>
+
+		  </header>
+    <div class="section-content">
+<div class="d-flex justify-content-center ">
+<section class="post">
+            <div class="section-content">
+	<center>
+		<div >
+			<div style="margin-right:1000px">
+				<a href="{{ path('app_tick_index') }}" style="font-size: 24px">
+					<i class="bi bi-arrow-left-circle-fill"></i>
+					Back to list</a>
+			</div>
+
+			<table class="table" style="border-collapse: collapse; width: 40%; border: 1px solid #ddd; background-color: white">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ ticket.id }}</td>
+					</tr>
+					<tr>
+						<th>Type Ticket</th>
+						<td>{{ ticket.nomTicket }}</td>
+					</tr>
+					<tr>
+						<th>Prix</th>
+						<td>{{ ticket.prix }}</td>
+					</tr>
+                    	<tr>
+						<th>Status</th>
+						 <td>
+               {{ ticket.status }}
+                </td>
+					</tr>
+				</tbody>
+			</table>
+
+			</center>
+		         </div>
+        </section>
+    </div>
+
+</div>
+		{% endblock %}

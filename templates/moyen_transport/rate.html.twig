@@ -1,0 +1,23 @@
+{% extends 'Front/front.html.twig'%}
+
+{% block title %}MoyenTransport{% endblock %}
+
+{% block body %}
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin: 100px 300px 100px">
+<div class="card" style="background-color: rgba(255, 249, 232, 0.8);padding: 20px;">
+<h1>Notez ce moyen de transport</h1>
+
+    
+        <div class="card-body">
+            <h2>{{ moyen_transport.num }}</h2>
+
+            <p>Note actuelle : {{ moyen_transport.note }}/5</p>
+
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button type="submit" class="btn btn-primary">Soumettre</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+   </div>
+{% endblock %}

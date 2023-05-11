@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket
+{% endblock %}
+
+{% block body %}
+
+	<center>
+		<div style="margin-top:100px ; ">
+			<div style="margin-right:1000px">
+				<a href="{{ path('app_ticket_index') }}" style="font-size: 24px">
+					<i class="bi bi-arrow-left-circle-fill"></i>
+					Back to list</a>
+			</div>
+			<h1>
+				<i class="bi bi-ticket"></i>
+				Ticket</h1>
+
+			<table class="table" style="border-collapse: collapse; width: 40%; border: 1px solid #ddd; background-color: white">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ ticket.id }}</td>
+					</tr>
+					<tr>
+						<th>Type Ticket</th>
+						<td>{{ ticket.nomTicket }}</td>
+					</tr>
+					<tr>
+						<th>Prix</th>
+						<td>{{ ticket.prix }}</td>
+					</tr>
+                    	<tr>
+						<th>Status</th>
+						 <td>
+                {% if ticket.status == "non payer" %}
+                <span class="badge bg-danger" style="font-size: 14px;">{{ ticket.status }}</span> 
+               {% elseif ticket.status == "payer" %}
+                <span class="badge bg-primary" style="font-size: 14px;">{{ ticket.status }}</span>
+                {% endif %}
+                </td>
+					</tr>
+				</tbody>
+			</table>
+
+			<a href="{{ path('app_ticket_edit', {'id': ticket.id}) }}">
+				<span class="d-inline-block">
+					<button class="btn btn-success">
+						<i class="bi bi-arrow-repeat me-2"></i>Modifier</button>
+				</span>
+				<span class="d-inline-block">
+					{{ include('ticket/_delete_form.html.twig') }}
+				</span>
+			</center>
+
+
+		{% endblock %}

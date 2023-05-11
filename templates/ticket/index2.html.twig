@@ -1,0 +1,111 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block body %}
+   <div id="main">
+		<div style="margin-top:70px ; margin-right:1000px">
+			<h2 style="margin-left:90px; font-weight: bold; font-family: 'Times New Roman', Times, serif;">
+				<i class="bi bi-basket2"></i>
+				Liste des Tickets
+			</h2>
+		</div>
+	</center>
+	<div style="display:inline-block;align-items: center; margin-left:350px;margin-right:60px">
+		<form  class="form-inline" >
+			<div class="input-group">
+				<input class="form-control mr-sm-2" id="date" name="date" type="search" placeholder="Search.." onkeyup="myFunction()" aria-label="Search" style="width: 400px;">
+				<div class="input-group-append">
+					<span class="input-group-text">
+						<i class="bi bi-search"></i>
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div style="background-color: white!important">
+		<table class="table table-bordered border-primary"  id="myTable">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Type Ticket</th>
+					<th>Prix</th>
+					<th>Status</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody id="all">
+				{% for ticket in tickets %}
+					<tr>
+						<td>{{ ticket.id }}</td>
+						<td>{{ ticket.nomTicket}}</td>
+						<td>{{ ticket.prix }}</td>
+						{#<td>{{ ticket.status }}</td>#}
+						<td>
+							{% if ticket.status == "non payer" %}
+								<span class="badge bg-danger" style="font-size: 14px;">{{ ticket.status }}</span>
+							{% elseif ticket.status == "payer" %}
+								<span class="badge bg-primary" style="font-size: 14px;">{{ ticket.status }}</span>
+							{% endif %}
+						</td>
+						<td>
+							<a href="{{ path('app_tick_show', {'id': ticket.id}) }}">
+								<button type="button" class="btn btn-warning">
+									<i class="bi bi-file-earmark-text me-2"></i>Aperçu</button>
+							</a>
+							 <a href="{{ path('payement', {'id': ticket.id})}}">
+								<button type="button" class="btn btn-secondary">
+									<i class="bi bi-credit-card me-2"></i>Paiement</button>
+							</a> 
+							<!-- Button trigger modal -->
+						</td>
+					</tr>
+				</div>
+			</tbody>
+		</td>
+	</tr>
+{% else %}
+	<tr>
+		<td colspan="4">no records found</td>
+	</tr>
+{% endfor %}
+</tbody>
+<tbody id="searchtab"></tbody>
+</table>
+</div>
+<main id="main" class="main" >
+ {{ knp_pagination_render(tickets) }}
+</main>
+
+<script>
+		function myFunction() {
+var input,
+filter1,
+filter2,
+table,
+tr,
+td1,
+td2,
+i,
+txtValue1,
+txtValue2;
+input = document.getElementById("date");
+filter1 = input.value.toUpperCase();
+filter2 = input.value.toUpperCase(); // Second filter value
+
+table = document.getElementById("myTable");
+tr = table.getElementsByTagName("tr");
+for (i = 0; i < tr.length; i++) {
+td1 = tr[i].getElementsByTagName("td")[1]; // First column to search
+td2 = tr[i].getElementsByTagName("td")[2]; // Second column to search
+if (td1 || td2) {
+txtValue1 = td1.textContent || td1.innerText;
+txtValue2 = td2.textContent || td2.innerText;
+if (txtValue1.toUpperCase().indexOf(filter1) > -1 || txtValue2.toUpperCase().indexOf(filter2) > -1) {
+tr[i].style.display = "";
+} else {
+tr[i].style.display = "none";
+}
+}
+}
+}
+	</script>
+{% endblock %}

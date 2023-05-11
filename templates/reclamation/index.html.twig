@@ -1,0 +1,70 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block title %}Mes Reclamations{% endblock %}
+{% block css %}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		{% endblock %} 
+
+{% block body %}
+    <footer id="footer">
+        <section>
+        <a href="{{ path('add_reclamation') }}" class="fa fa-arrow-circle-right" style="font-size:24px;color:grey">Ajouter Reclamation</a>
+            <form action="{{ path('app_reclamation') }}" method="get">
+            <label for="itemsPerPage">Items per page:</label>
+            <select name="itemsPerPage" id="itemsPerPage" onchange="this.form.submit()">
+                {% for option in availableItemsPerPage %}
+                    <option value="{{ option }}" {% if option == itemsPerPage %}selected{% endif %}>{{ option }}</option>
+                {% endfor %}
+            </select>
+            </form>
+            <table>
+                <tr>
+                    <th>Objet</th>
+                    <th>Message</th>
+                    <th>Statut</th>
+                    <th>Date</th>
+                    <th>text Reponse</th>
+                    <th>Supprimer</th>
+                    <th>Modifier</th>
+                    <th>Pdf</th>
+                </tr>
+                {% for data in list %}
+                    <tr>
+                        <td>{{ data.objet }}</td>
+                        <td>{{ data.message_rec }}</td>
+                        <td>{{ data.statut }}</td>
+                        <td>{{ data.date_rec|date("m/d/Y") }}</td>
+                        <td>
+                            {% if data.reponse is null %}
+                                En Cours
+                            {% else %}
+                                {{ data.reponse.text_rep }}
+                            {% endif %}
+                        </td>
+                        {% if data.reponse is null %}
+                            <td>
+                                <a href="{{ path('delete_reclamation', {'id': data.id_reclamation}) }}" class="btn btn-outline-danger btn-fw;">Supprimer</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('update_reclamation', {'id': data.id_reclamation}) }}" class="btn btn-outline-warning btn-fw;">Modifier</a>
+                            </td>
+                            <td>xxxxx</td>
+                        {% else %}
+                            <td>xxxxx</td>
+                            <td>xxxxx</td>
+                            <td>
+                                <a href="{{ path('app_pdfr', {'id': data.id_reclamation}) }}" class="btn btn-light" style="padding: 0.75rem 1rem;">
+                                    <i class="bi bi-file-earmark-pdf"></i>
+                                    Exporter PDF
+                                </a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+            <div class="text-center">
+                {{ knp_pagination_render(list) }}
+            </div>
+        </section>
+    </footer>
+{% endblock %}

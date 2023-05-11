@@ -1,0 +1,94 @@
+{% block body %}
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<title>Rappel de réservation</title>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+			<style type="text/css">
+				body {
+					font-family: Arial, sans-serif;
+					font-size: 14px;
+					color: #333;
+				}
+				h1 {
+					font-size: 24px;
+					color: #333;
+					margin-bottom: 20px;
+				}
+				p {
+					margin-bottom: 10px;
+				}
+				.container {
+					max-width: 600px;
+					margin: 0 auto;
+				}
+				.header {
+					background-color: #f2f2f2;
+					padding: 20px;
+					text-align: center;
+				}
+				.content {
+					padding: 20px;
+					background-color: #fff;
+				}
+				.footer {
+					background-color: #f2f2f2;
+					padding: 20px;
+					text-align: center;
+				}
+			</style>
+		</head>
+		<body>
+			<div class="container">
+				<div class="header">
+					<h1 style="color: #0066cc;">Rappel sur votre réservation</h1>
+				</div>
+				<div class="content">
+					<center>
+						<p>Bonjour
+							{{ user }}</p>
+					</center>
+					<p>
+						<strong>
+							Nous vous confirmons votre réservation pour l'itinéraire
+							<i class="bi bi-geo-alt"></i>
+						</strong>
+						{{ itineraire }}</p>
+					<p>
+						<strong>
+							<i class="bi bi-calendar"></i>
+							Date de votre réservation :</strong>
+						{{ reservation.dateReservation|date('Y-m-d') }}</p>
+					<p>
+						<strong>
+							<i class="bi bi-clock"></i>
+							Heure de départ :</strong>
+						{{ heureDepart|date('H:i') }}</p>
+					<p>
+						<strong>
+							<i class="bi bi-clock"></i>
+							Heure d'arrivée :</strong>
+						{{ heureArrivee|date('H:i') }}</p>
+					<p>
+						<strong>
+							<i class="bi bi-ticket"></i>
+							Type Ticket :</strong>
+						{{ typeTicket }}</p>
+					<p>
+						<strong>
+							<i class="bi bi-bus"></i>
+							Moyen de Transport :</strong>
+						{{ moyen }}</p>
+					<center>
+						<p>Merci de votre confiance et à bientôt !</p>
+					</center>
+				</div>
+				<div class="footer">
+					<p>© 2023 Swift Transit. Tous droits réservés.</p>
+				</div>
+			</div>
+		</body>
+	</html>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'Front/login.html.twig' %}
+{% block body %}
+
+   <div id="main">
+           <!-- Post -->
+	 <section class="post">
+	<form action="{{ path('rest_password_email_confirmation') }}" method="post">
+
+		<header class="major">
+		  <span class="date">Welcome </span>
+		   <h1>Vérifier votre code <br />
+				</h1>
+		  </header>
+			 <div class="form-group">
+        <label for="text">Code de récupération</label>
+        <input type="text" id="code" name="code" class="form-control" required>
+    </div>
+		
+        <button type="submit" id="submit-btn" class="btn btn-primary">Vérifier</button>
+</form>
+<script>
+    // get the submit button
+    var button1 = document.getElementById('submit-btn');
+
+    // add a click event listener to the submit button
+    button1.addEventListener('click', function(event) {
+        // get the email input
+        var codeInput = document.getElementById('code');
+
+        // check if the email input is valid
+        if (codeInput.checkValidity()) {
+            // do nothing, the form will be submitted
+        } else {
+            // prevent the form from being submitted
+            event.preventDefault();
+
+            // display an error message
+            alert('Vous devez saisir un code valide');
+        }
+    });
+</script>
+</div>
+{% endblock %}
+
+   
+   
+
+
+
+		
+
+    
+
+   

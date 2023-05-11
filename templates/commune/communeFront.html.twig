@@ -1,0 +1,39 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block body %}
+    <div id="main">
+        <section class="post">
+            <header class="major">
+                <h1>Commune index</h1>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom Commune</th>
+                            <th>Longitude et Altitude</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for commune in communes %}
+                            <tr>
+                                <td>{{ commune.id }}</td>
+                                <td>{{ commune.nomCommune }}</td>
+                                <td>{{ commune.longAlt }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="3">no records found</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </header>
+        </section>
+
+        <div id="map" style="height: 400px;"></div>
+    </div>
+
+    
+{% endblock %}

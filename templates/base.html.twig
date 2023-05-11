@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{  encore_entry_link_tags('app') }#}
+            <!-- Google Fonts -->
+ <link href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="{{ asset('Back/Libraries/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('Back/Libraries/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('Back/Libraries/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('Back/Libraries/quill/quill.snow.css') }}" rel="stylesheet">
+  <link href="{{ asset('Back/Libraries/quill/quill.bubble.css') }}" rel="stylesheet">
+  <link href="{{ asset('Back/Libraries/remixicon/remixicon.css') }}" rel="stylesheet">
+  <link href="{{ asset('Back/Libraries/simple-datatables/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('Back/css/style.css') }}" rel="stylesheet">
+        {% endblock %}
+ 
+        {% block javascripts %}
+            {#{ encore_entry_script_tags('app') }#}
+  <script src="{{ asset('Back/Libraries/apexcharts/apexcharts.min.js') }}"></script>
+  <script src="{{ asset('Back/Libraries/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('Back/Libraries/chart.js/chart.umd.js') }}"></script>
+  <script src="{{ asset('Back/Libraries/echarts/echarts.min.js') }}"></script>
+  <script src="{{ asset('Back/Libraries/quill/quill.min.js') }}"></script>
+  <script src="{{ asset('Back/Libraries/simple-datatables/simple-datatables.js') }}"></script>
+  <script src="{{ asset('Back/Libraries/tinymce/tinymce.min.js') }}"></script>
+  <script src="{{ asset('Back/Libraries/php-email-form/validate.js') }}"></script>
+  <script src={{ asset('Back/Libraries/jquery/dist/jquery.min.js') }}></script>
+
+   <script src="{{ asset('Back/js/main.js') }}"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        {% endblock %}
+
+
+       
+    </head>
+    <body>
+     {% block header %}
+     <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+     
+    <div class="d-flex align-items-center justify-content-between">
+       <a href="#" class="logo d-flex align-items-center"> 
+        <img src="{{ asset('Back/img/swift.png') }}" >
+        <span class="d-none d-lg-block">SwiftTransit</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+     
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              You have 4 new notifications
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Lorem Ipsum</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>30 min. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-x-circle text-danger"></i>
+              <div>
+                <h4>Atque rerum nesciunt</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>1 hr. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-check-circle text-success"></i>
+              <div>
+                <h4>Sit rerum fuga</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>2 hrs. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-info-circle text-primary"></i>
+              <div>
+                <h4>Dicta reprehenderit</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>4 hrs. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-footer">
+              <a href="#">Show all notifications</a>
+            </li>
+
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-chat-left-text"></i>
+            <span class="badge bg-success badge-number">3</span>
+          </a><!-- End Messages Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+            <li class="dropdown-header">
+              You have 3 new messages
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+                <img src="{{ asset('Back/img/messages-1.jpg') }}" alt="" class="rounded-circle">
+                <div>
+                  <h4>Maria Hudson</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>4 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+               <img src="{{ asset('Back/img/messages-2.jpg') }}" alt="" class="rounded-circle">
+                <div>
+                  <h4>Anna Nelson</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>6 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+                <img src="{{ asset('Back/img/messages-3.jpg') }}" alt="" class="rounded-circle">
+                <div>
+                  <h4>David Muldon</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>8 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="dropdown-footer">
+              <a href="#">Show all messages</a>
+            </li>
+
+          </ul><!-- End Messages Dropdown Items -->
+
+        </li><!-- End Messages Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+           <img src="{{ asset('http://localhost/images/abir123-6452d1c7d745e.jpg') }}" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{app.user.username}}</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>{{app.user.nom}} {{app.user.prenom}}</h6>
+              <span>Administrateur</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              {% if not app.user %}
+              {% else %}
+              <a class="dropdown-item d-flex align-items-center" href="{{ path('app_edit2',{'id': app.user.id}) }}">
+                <i class="bi bi-person"></i>
+                <span>Mon profile</span>
+              </a>
+              {% endif %}
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ path('app_password_admin',{'id': app.user.id}) }}">
+                <i class="bi bi-gear"></i>
+                <span>changer mot de passe</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Besoin d'aide ?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+<li>
+  <a class="dropdown-item d-flex align-items-center" href="{{ path('app_logout') }}">
+    <i class="bi bi-box-arrow-right"></i>
+    <span>Déconnexion</span>
+  </a>
+</li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+        {% endblock %}
+       
+
+         {% block sidebar %}
+          <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+         <a class="nav-link" href="{{ path('app_dashboard') }}">
+          <i class="bi bi-grid"></i><span>Dashboard</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+      </li><!-- End Dashboard Nav -->
+        
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('app_moyen_transport_index') }}">
+          <i class="bi bi-truck"></i><span> Moyen de transport</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        
+      </li><!-- End Forms Nav -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('app_ligne_index') }}">
+          <i class="bi bi-geo-alt"></i>
+          <span> Ligne de transport</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+      </li><!-- End Contact Page Nav -->
+      <li class="nav-item">
+          <a class="nav-link"  href="{{ path('app_reservation_index') }}">
+          <i class="bi bi-calendar-plus"></i><span>Gestion Reservations</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+      <li class="nav-item">
+          <a class="nav-link"  href="{{ path('app_ticket_index') }}">
+          <i class="bi bi-ticket"></i><span>Gestion Tickets</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+      <li class="nav-item">
+         <a class="nav-link" href="{{ path('app_commune_index') }}"> 
+
+          <i class="bi bi-geo-alt"></i><span>Gestion Communes</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+      </li><!-- End Charts Nav -->
+       <li class="nav-item">
+         <a class="nav-link" href="{{ path('app_station_index') }}"> 
+          <i class="bi bi-building"></i><span>Gestion Stations</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+      </li><!-- End Charts Nav -->
+
+       <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Reclamations</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ path('app_reclamation_reponse') }}">
+              <i class="bi bi-circle"></i><span>Reclamations non repondus</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ path('app_reponse') }}">
+              <i class="bi bi-circle"></i><span>Reclamations repondus</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"  href="{{ path('app_trajet_index') }}"> 
+          <i class="bi bi-gem"></i><span>Trajet</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+       
+      </li><!-- End Icons Nav -->
+
+      <li class="nav-item">
+          
+         <a class="nav-link"  href="{{ path('app_iteneraire_index') }}"> 
+          <i class="bi bi-gem"></i><span>Itineraire</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+       
+      </li><!-- End Icons Nav -->
+
+      <li class="nav-heading">Pages</li>
+
+      <li class="nav-item">
+         <a class="nav-link" href="#">
+         <a class="nav-link" href="{{ path('app_user_index') }}"> 
+          <i class="bi bi-person"></i>
+          <span>Gestion utilisateurs</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+         <a class="nav-link" href="{{ path('app_role_index') }}"> 
+          <i class="bi  bi-people"></i>
+          <span>Gestion roles</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-faq.html">
+          <i class="bi bi-question-circle"></i>
+          <span>F.A.Q</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-register.html">
+          <i class="bi bi-card-list"></i>
+          <span>Register</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-login.html">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Login</span>
+        </a>
+      </li><!-- End Login Page Nav -->
+
+      
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+        {% endblock %}
+
+        {% block body %}
+
+        {% endblock %}
+
+         {% block footer %}
+         <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+        {% endblock %}
+    </body>
+</html>

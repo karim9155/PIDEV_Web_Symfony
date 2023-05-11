@@ -1,0 +1,70 @@
+{#{% extends 'base.html.twig' %}
+
+{% block title %}New Ticket{% endblock %}
+
+{% block body %}
+    <h1>Create new Ticket</h1>
+
+    {{ include('ticket/_form.html.twig') }}
+
+    <a href="{{ path('app_ticket_index') }}">back to list</a>
+{% endblock %}#}
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}New Ticket{% endblock %}
+
+{% block body %}
+<center>
+    <div id="main">
+        <!-- Post -->
+        <section class="post">
+        <div style="margin-right:1000px">
+                <a href="{{ path('app_ticket_index') }}" style="font-size: 24px"><i class="bi bi-arrow-left-circle-fill"></i> Back to list</a>
+        </div>
+            <header class="major">
+                <h1>Ajouter new Ticket</h1>
+            </header>
+
+            <div class="section-content">
+                {{ form_start(form , {'attr': {'class':'form-horizontal','novalidate':'novalidate'}} ) }}
+                 <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.nom_ticket, {'label':'Le Type de votre Ticket' ,'attr':{'placeholder': 'Ajouter le type ticket...'}}) }}  
+                    </fieldset>
+                </div>
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.prix, {'label':'Le Prix de votre Ticket' ,'attr':{'placeholder': 'Ajouter le prix de ticket...'}}) }}  
+                    </fieldset>
+                </div>
+
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.status, {'label':'Status Ticket' ,'attr':{'placeholder': 'statut actuelle des tickets..'}}) }}
+                    </fieldset>
+                </div>
+                
+              {#this input field is hidden idReservation #}
+                   <div class="col-md-12">
+              <fieldset>
+              {{ form_row(form.id_reservation, {'label': 'idReservation', 'attr': {'placeholder': 'ticket....'}}) }}
+              </fieldset>
+               </div>
+              
+                <div class="col-md-12">
+                    <fieldset>
+                        <button type= "submit" class="btn btn-success"> Ajouter Ticket ! </button>
+                    </fieldset>
+                </div>
+
+
+
+                {{ form_end(form) }}
+
+            </div>
+        </section>
+    </div>
+    </center>
+{% endblock %}

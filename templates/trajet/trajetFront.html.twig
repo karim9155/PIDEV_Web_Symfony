@@ -1,0 +1,62 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block body %}
+<div id="main">
+           <!-- Post -->
+	 <section class="post">
+		  <header class="major">
+		    <h1>Trajet index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Temps_parcours</th>
+                <th>Pts_depart</th>
+                <th>Pts_arrive</th>
+                <th>Itineraire</th>
+          
+            </tr>
+        </thead>
+        <tbody>
+        {% for trajet in trajets %}
+            <tr>
+                <td>{{ trajet.id }}</td>
+                <td>{{ trajet.tempsParcours }}</td>
+                <td>{{ trajet.ptsDepart }}</td>
+                <td>{{ trajet.ptsArrive }}</td>
+                <td>{{ trajet.idIt.ptsdepart ~ ' => ' ~ trajet.idIt.ptsarrive }}</td>
+                <td>{{ trajet.idIt.ptsarrive ~ ' => ' ~ trajet.idIt.ptsarrive }}</td>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+ 
+		  </header>
+       
+    </section>
+<div id="map" style="height: 400px;"></div>
+
+        
+
+
+<script>
+    // Initialize the map
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 37.7749, lng: -122.4194}, // San Francisco, CA
+        zoom: 10
+    });
+    </script>
+    <div id="search-box">
+  <input type="text" placeholder="Search for a location">
+</div>
+
+
+
+{% endblock %}

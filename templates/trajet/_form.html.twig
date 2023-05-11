@@ -1,0 +1,48 @@
+{% block body %}
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<div style="display: flex; align-items: center; justify-content: center; margin-top: 40px;">
+  <div class="card" style="width: 600px;">
+    <div class="card-body">
+      <h5 class="card-title" style="text-align: center; margin-bottom: 30px;">Ajout de trajet</h5>
+      
+      
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Temps Parcours</label>
+        {{ form_widget(form.temps_parcours , {'attr': {'class': 'form-control'}} )}}
+        {{ form_errors(form.temps_parcours) }}
+      </div>
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Point de depart</label>
+        {{ form_widget(form.pts_depart, {'attr': {'class': 'form-control'}} )}}
+        {{ form_errors(form.pts_depart) }}
+      </div>
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Point d'arrive</label>
+        {{ form_widget(form.pts_arrive, {'attr': {'class': 'form-control'}} )}}
+        {{ form_errors(form.pts_arrive) }}
+      </div>
+
+     
+
+      
+
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Itineraire</label>
+        {{ form_widget(form.id_it, {'attr': {'class': 'form-control'}} )}}
+      </div>
+
+      <div style="text-align: center;">
+        <button class="btn btn-primary" style="width: 120px;">{{ button_label|default('Save') }}</button>
+      </div>
+
+      {{ form_end(form) }}
+      
+    </div>
+  </div>
+</div>
+
+{% endblock %}

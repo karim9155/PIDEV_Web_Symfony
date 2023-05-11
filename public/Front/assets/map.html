@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenStreetMap Example</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        html, body, #map {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body onload="initMap()">
+    <div id="map"></div>
+    <script>
+        
+        function search(query) {
+    if (query) {
+        var url = "https://nominatim.openstreetmap.org/search?q=" + encodeURIComponent(query) + "&format=jsonv2";
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    var lat = data[0].lat;
+                    var lon = data[0].lon;
+                    map.setView([lat, lon], 15);
+                }
+            })
+            .catch(error => console.error(error));
+    }
+}
+var map;
+var search;
+
+function initMap() {
+    map = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('https://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=d47fe3e2931048b9a9aa985298fda589', {
+    attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+    maxZoom: 18,
+    tileSize: 512,
+    zoomOffset: -1,
+    apikey: 'd47fe3e2931048b9a9aa985298fda589'
+}).addTo(map);
+    
+    search = function(query) {
+        if (query) {
+            var url = "https://nominatim.openstreetmap.org/search?q=" + encodeURIComponent(query) + "&format=jsonv2";
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        var lat = data[0].lat;
+                        var lon = data[0].lon;
+                        map.setView([lat, lon], 15);
+                    }
+                })
+                .catch(error => console.error(error));
+        }
+    };
+}
+var transportLayer;
+
+function toggleTransport() {
+    if (!transportLayer) {
+        transportLayer = L.tileLayer('https://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=d47fe3e2931048b9a9aa985298fda589', {
+            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+            tileSize: 512,
+            zoomOffset: -1,
+            apikey: 'd47fe3e2931048b9a9aa985298fda589'
+        }).addTo(map);
+    } else {
+        map.removeLayer(transportLayer);
+        transportLayer = null;
+    }
+}
+    </script>
+</body>
+</html>

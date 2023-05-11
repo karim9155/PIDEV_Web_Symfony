@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>{% block title %}Swift Transit{% endblock %}</title> 
+        <meta charset="utf-8" />
+		         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Front/images/logo.png')}}">
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVpdxQ5VonotjFU5u01A1hAwVsf4PElo0&libraries=places"></script>
+        {% block stylesheets %}
+
+		<link rel="stylesheet" href="{{ asset('Front/assets/css/main.css') }}" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-UO2eT0C1QSPvYcXaXdGsDhVgkMCw8IvP4EiqLVaCp42iisyDwrnIy1ExX4k4Qqf3" crossorigin="anonymous">
+
+		<noscript><link rel="stylesheet" href="{{ asset('Front/assets/css/noscript.css') }}" /></noscript>
+
+		         <link rel="stylesheet" href="{{ asset('Front/assets/css/main.css') }}" />
+	        	<noscript><link rel="stylesheet" href="{{ asset('Front/assets/css/noscript.css') }}" /></noscript>
+
+        {% endblock %}
+    
+    </head>
+    	<body class="is-preload">
+      
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<h1>Swift
+						Transit</h1>
+						<p>your key to unlocking a world of efficient and hassle-free public transport </p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+					<a href="{{ path('home') }}" class="logo">Swift Transit </a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+					{% if app.user.id_role.id == 2 %}
+						<ul class="links">
+							<li><a href ="{{ path('voyager_station') }}">Station</a></li>
+							<li><a href ="{{ path('lignes_urbaine') }}" >Lignes Urbaines</a></li>
+							<li><a href ="{{path('voyager_trajet')}}">Trajets</a></li>
+							 {% if not app.user %}
+                             {% else %}
+                             <a class="dropdown-item d-flex align-items-center" href="{{ path('app_edit2',{'id': app.user.id}) }}">
+							 <li><a href ="{{ path('app_edit3',{'id': app.user.id}) }}">Profile</a></li
+                             {% endif %}
+							<li><a href ="{{ path('tarif_ticket') }}">Tarifs</a></li>
+							<li><a href="{{ path('app_password_change') }}">Password</a></li>
+							<li  class="active"><a href ="{{ path('add_reclamation') }}">Réclamer</a></li>
+
+							
+						</ul>
+				    {% elseif app.user.id_role.id == 3 %}
+					<ul class="links">
+							<li><a href ="{{ path('voyager_station') }}">Station</a></li>
+							<li><a href ="{{path('voyager_trajet')}}">Trajets</a></li>
+							<li><a href ="{{ path('lignes_urbaine') }}" >Lignes Urbaines</a></li>
+							 {% if not app.user %}
+                             {% else %}
+                             <a class="dropdown-item d-flex align-items-center" href="{{ path('app_edit2',{'id': app.user.id}) }}">
+							 <li><a href ="{{ path('app_edit3',{'id': app.user.id}) }}">Profile</a></li>
+                             {% endif %}
+							<li><a href="{{ path('app_password_change') }}">Password</a></li>
+							<li  class="active"><a href ="{{ path('add_reclamation') }}">Réclamer</a></li>
+							
+						</ul>
+					{% else %}
+					<ul class="links">
+							 {% if not app.user %}
+                             {% else %}
+                             <a class="dropdown-item d-flex align-items-center" href="{{ path('app_edit2',{'id': app.user.id}) }}">
+							 <li><a href ="{{ path('app_edit3',{'id': app.user.id}) }}">Profile</a></li
+                             {% endif %}
+							<li><a href ="{{ path('tarif_ticket') }}">Tarifs</a></li>
+							<li><a href ="{{ path('reserver') }}">Réserver</a></li>
+							<li><a href ="{{ path('app_res_index') }}">Mes Reservations</a></li>
+							<li><a href ="{{ path('app_tick_index') }}">Mes Tickets</a></li>
+							<li><a href="{{ path('app_password_change') }}">Password</a></li>
+							<li  class="active"><a href ="{{ path('add_reclamation') }}">Réclamer</a></li>
+
+						</ul>
+					{% endif %}
+					
+
+						<a class="btn btn-outline-info" href="{{ path('app_logout') }}">Déconnexion</a>
+						<ul class="icons">
+							{#<li><a href="#" class="icon brands fab fa-opencart"><span class="label">Twitter</span></a></li>#}
+							{#<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>#}
+							{#<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>#}
+						</ul>
+					</nav>
+
+				<!-- Main -->
+				{% block body %}
+					<div id="main">
+						<!-- Featured Post -->
+							<article class="post featured">
+								
+							</article>
+
+					</div>
+					<script>
+					// Create the search box and link it to the UI element.
+const searchBox = new google.maps.places.SearchBox(document.getElementById('search-box'));
+
+// Add the search box to the map.
+map.controls[google.maps.ControlPosition.TOP_LEFT].push(document.getElementById('search-box'));
+// Listen for the event fired when the user submits a search.
+searchBox.addListener('places_changed', function() {
+  // Get the places returned by the search.
+  const places = searchBox.getPlaces();
+
+  // If no places were found, do nothing.
+  if (places.length === 0) {
+    return;
+  }
+
+  // For each place, add a marker to the map and center the map on the marker.
+  places.forEach(function(place) {
+    if (!place.geometry || !place.geometry.location) {
+      console.log("Returned place contains no geometry");
+      return;
+    }
+
+    // Create a marker for the place.
+    const marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location
+    });
+
+    // Center the map on the marker.
+    map.setCenter(place.geometry.location);
+  });
+});
+
+					</script>
+					   {% endblock %}
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Nom</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Envoyer Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Adresse</h3>
+								<p>Rue André Ampère - 2083 - Pôle Technologique - El Ghazala / Tunis </p>
+							</section>
+							<section>
+								<h3>Téléphone</h3>
+								<p><a href="#">(+216) 71 904 894 / 71 904 889 / 71 904 932</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">SwiftTransit@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Sociale</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+
+           {% block js %}
+		<!-- Scripts -->
+			<script src="{{ asset('Front/assets/js/jquery.min.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/jquery.scrollex.min.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/jquery.scrolly.min.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/browser.min.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/breakpoints.min.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/util.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/main.js') }}"></script>
+            {% endblock %}
+
+    </body>
+</html>

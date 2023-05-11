@@ -1,0 +1,43 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block body %}
+    <div id="main">
+        <section class="post">
+            <header class="major">
+                <h1>Station Index</h1>
+            </header>
+
+
+            <div id="map" style="height: 400px;"></div>
+        </section>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVpdxQ5VonotjFU5u01A1hAwVsf4PElo0"></script>
+    <script>
+        function initMap() {
+            var myLatLng = {lat: 36.8637, lng: 10.01769};
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 11,
+                center: myLatLng
+            });
+
+       
+ // Retrieve long_alt values for all stations from the database
+            var long_alts = {{ stationLongAlts|json_encode()|raw }};
+
+            // Loop over long_alt values and create markers on the map
+            for (var i = 0; i < long_alts.length; i++) {
+                var latLng = new google.maps.LatLng(long_alts[i].split(',')[0], long_alts[i].split(',')[1]);
+                var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map
+                });
+            }
+           
+        
+        }
+
+        google.maps.event.addDomListener(window, 'load', initMap);
+    </script>
+{% endblock %}

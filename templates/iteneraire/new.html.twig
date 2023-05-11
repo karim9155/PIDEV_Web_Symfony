@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Iteneraire{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <h1>Create new Iteneraire</h1>
+
+    {{ include('iteneraire/_form.html.twig') }}
+
+    <a href="{{ path('app_iteneraire_index') }}">back to list</a>
+    </main>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trajet{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+    <h1>Trajet</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ trajet.id }}</td>
+            </tr>
+            <tr>
+                <th>Temps_parcours</th>
+                <td>{{ trajet.tempsParcours }}</td>
+            </tr>
+            <tr>
+                <th>Pts_depart</th>
+                <td>{{ trajet.ptsDepart }}</td>
+            </tr>
+            <tr>
+                <th>Pts_arrive</th>
+                <td>{{ trajet.ptsArrive }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_trajet_index') }}">back to list</a>
+
+    <a href="{{ path('app_trajet_edit', {'id': trajet.id}) }}">edit</a>
+
+    {{ include('trajet/_delete_form.html.twig') }}
+    </main>
+{% endblock %}

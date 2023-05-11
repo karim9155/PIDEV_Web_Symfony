@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Station{% endblock %}
+
+{% block body %}
+    <h1 style=" margin-left:350px; margin-top:80px" >Create new Station</h1>
+    <div style="display: flex ;align-items: center;justify-content: center;margin-top:100px; margin-left:350px;margin-right:60px">
+
+    {{ include('station/_form.html.twig') }}
+
+    <a href="{{ path('app_station_index') }}">back to list</a>
+    </div>
+{% endblock %}

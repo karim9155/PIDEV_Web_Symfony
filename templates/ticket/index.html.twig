@@ -1,0 +1,180 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket index
+{% endblock %}
+
+{% block body %}
+	<center>
+		<div style="margin-top:70px ; margin-right:1000px">
+			<h1 style="margin-left:90px; font-weight: bold; font-family: 'Times New Roman', Times, serif;">
+				<i class="bi bi-basket2"></i>
+				Liste des Tickets
+			</h1>
+			<br>
+			<a href="{{ path('app_ticket_new') }}">
+				<button type="button" class="btn btn-primary">
+					<i class="bi bi-plus-circle me-2"></i>
+					Ajouter Ticket</button>
+			</a>
+		</div>
+	</center>
+	<br>
+	<div class="d-flex justify-content-center ">
+		{% for type, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ type }} alert-dismissible fade show d-flex align-items-center">
+					<i class="bi bi-check-circle me-2"></i>
+					<div>
+						{{ message }}
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+
+			{% endfor %}
+		{% endfor %}
+	</div>
+	<div style="display:inline-block;align-items: center; margin-left:350px;margin-right:60px">
+		<form  action="{{path('searchTicket')}}" class="form-inline" id="search-form">
+			<div class="input-group">
+				<input class="form-control mr-sm-2" id="searchValue" name="searchValue" type="text" placeholder="Search.." aria-label="Search" style="width: 400px;">
+				<div class="input-group-append">
+					<span class="input-group-text">
+						<i class="bi bi-search"></i>
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div style="display: flex ;align-items: center;justify-content: center;margin-top:25px; margin-left:350px;margin-right:20px ; background-color: white!important">
+		<table class="table table-bordered border-primary" id="t">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Type Ticket</th>
+					<th>Prix</th>
+					<th>Status</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody id="all">
+				{% for ticket in tickets %}
+					<tr>
+						<td>{{ ticket.id }}</td>
+						<td>{{ ticket.nomTicket}}</td>
+						<td>{{ ticket.prix }}</td>
+						{#<td>{{ ticket.status }}</td>#}
+						<td>
+							{% if ticket.status == "non payer" %}
+								<span class="badge bg-danger" style="font-size: 14px;">{{ ticket.status }}</span>
+							{% elseif ticket.status == "payer" %}
+								<span class="badge bg-primary" style="font-size: 14px;">{{ ticket.status }}</span>
+							{% endif %}
+						</td>
+						<td>
+							<a href="{{ path('app_ticket_show', {'id': ticket.id}) }}">
+								<button type="button" class="btn btn-warning">
+									<i class="bi bi-file-earmark-text me-2"></i>Aperçu</button>
+							</a>
+							<a href="{{ path('app_ticket_edit', {'id': ticket.id}) }}">
+								<button type="button" class="btn btn-success">
+									<i class="bi bi-pencil me-2"></i>Modifier</button>
+							</a>
+							<a href="{{ path('payement', {'id': ticket.id})}}">
+								<button type="button" class="btn btn-secondary">
+									<i class="bi bi-credit-card me-2"></i>Paiement</button>
+							</a>
+							<!-- Button trigger modal -->
+						{#	<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#paymentModal">
+								<i class="bi bi-credit-card me-2"></i>Paiement
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="paymentModalLabel">
+												<i class="bi bi-credit-card me-2"></i>Paiement Ticket</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div
+											class="modal-body">
+											<!-- Payment form goes here -->
+											<form>
+												<div class="form-group">
+													<label for="cardNumber">Numéro de carte</label>
+													<input type="text" class="form-control" id="cardNumber" placeholder="Entrez le numéro de carte">
+												</div>
+												<div class="form-group">
+													<label for="expiryDate">Date d'expiration</label>
+													<input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+												</div>
+												<div class="form-group">
+													<label for="cvv">CVV</label>
+													<input type="text" class="form-control" id="cvv" placeholder="Entez CVV">
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+													<button type="button" class="btn btn-primary">Confirm paiement</button>
+												</div>
+											</form>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							#}
+						</td>
+					</tr>
+				</div>
+			</tbody>
+		</td>
+	</tr>
+{% else %}
+	<tr>
+		<td colspan="4">no records found</td>
+	</tr>
+{% endfor %}
+</tbody>
+<tbody id="searchtab"></tbody>
+</table>
+</div>
+<main id="main" class="main" >
+ {{ knp_pagination_render(tickets) }}
+</main>
+
+<script>src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+<script>
+$(document).ready(function () {
+    $("#search").keyup(function (e) {
+        var value = $(this).val();
+
+        $.ajax({
+            url: "{{ path('searchTicket') }}",
+            type: "GET",
+            data: {
+                searchValue: value
+            },
+            success: function (retour) {
+                if (retour) {
+                    $("#t tbody#all").hide();
+                    $("#t tbody#searchtab").empty();
+
+                    $.each(JSON.parse(retour), function (i, obj) {
+                        $("#t tbody#searchtab").append("<tr><td>" + obj.id + "</td><td>" + obj.nomTicket + "</td><td>" + obj.prix + '</td><td><a href="{{ path("app_ticket_show", {"id": ' + obj.id + '}) }}">Show</a><a href="{{ path("app_ticket_edit", {"id": ' + obj.id + '}) }}">Edit</a></td></tr>');
+                    });
+                } else {
+                    $("#t tbody#all").show();
+                    $("#t tbody#searchtab").empty();
+                }
+
+                $("#t tbody#searchtab").fadeIn("fast");
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

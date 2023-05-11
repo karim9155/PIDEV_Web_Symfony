@@ -1,0 +1,54 @@
+{% extends 'Front/login.html.twig' %}
+{% block body %}
+
+   <div id="main">
+           <!-- Post -->
+	 <section class="post">
+	<form action="{{ path('forget_password') }}" method="post" {'attr': {'novalidate': 'novalidate'}}>
+
+		<header class="major">
+		  <span class="date">Welcome </span>
+		   <h1>Entrer votre adresse <br />
+				E-mail</h1>
+		  </header>
+			 <div class="form-group">
+        <label for="email">Adresse e-mail:</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+    </div>
+		
+        <button type="submit" id="submit-btn" class="btn btn-primary">Envoyer</button>
+</form>
+<script>
+    // get the submit button
+    var button1 = document.getElementById('submit-btn');
+
+    // add a click event listener to the submit button
+    button1.addEventListener('click', function(event) {
+        // get the email input
+        var emailInput = document.getElementById('email');
+
+        // check if the email input is valid
+        if (emailInput.checkValidity()) {
+            // do nothing, the form will be submitted
+        } else {
+            // prevent the form from being submitted
+            event.preventDefault();
+
+            // display an error message
+            alert('Vous devez saisir une adresse e-mail valide');
+        }
+    });
+</script>
+</div>
+{% endblock %}
+
+   
+   
+
+
+
+		
+
+    
+
+   

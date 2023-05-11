@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>{% block title %}Swift Transit{% endblock %}</title> 
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Front/images/logo.png')}}">
+
+        {% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('Front/assets/css/main.css') }}" />
+		<noscript><link rel="stylesheet" href="{{ asset('Front/assets/css/noscript.css') }}" /></noscript>
+        {% endblock %}
+    
+    </head>
+   	<body class="is-preload">
+      
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<h1>Swift
+						Transit</h1>
+						<p>your key to unlocking a world of efficient and hassle-free public transport </p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+						<a href="{{ path('home') }}" class="logo">Swift Transit </a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="{{ path('security_login') }}">SE CONNECTER</a></li>
+							<li ><a href="{{ path('security_registration') }}">Inscription</a></li>
+							
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fab fa-opencart"><span class="label">Twitter</span></a></li>
+							{#<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>#}
+							{#<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>#}
+						</ul>
+					</nav>
+
+				<!-- Main -->
+				{% block body %}
+					<div id="main">
+						<!-- Featured Post -->
+							<article class="post featured">
+								
+							</article>
+
+					</div>
+					   {% endblock %}
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Nom</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Envoyer Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Adresse</h3>
+								<p>Rue André Ampère - 2083 - Pôle Technologique - El Ghazala / Tunis </p>
+							</section>
+							<section>
+								<h3>Téléphone</h3>
+								<p><a href="#">(+216) 71 904 894 / 71 904 889 / 71 904 932</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">SwiftTransit@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Sociale</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+
+           {% block js %}
+		<!-- Scripts -->
+			<script src="{{ asset('Front/assets/js/jquery.min.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/jquery.scrollex.min.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/jquery.scrolly.min.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/browser.min.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/breakpoints.min.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/util.js') }}"></script>
+			<script src="{{ asset('Front/assets/js/main.js') }}"></script>
+            {% endblock %}
+
+    </body>
+</html>

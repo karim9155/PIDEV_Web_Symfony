@@ -1,0 +1,92 @@
+{% extends 'Front/front.html.twig'%}
+{% block title %}MoyenTransport{% endblock %}
+{% block body %}
+<style>
+            #stars
+            {
+                width:200px;
+                height:200px;
+                margin:50px auto;   
+            }
+            lt
+            {
+                display:inline-block;
+                {# font-size:20px; #}
+                padding:1px;
+                color:#ccc;
+            }
+            .hovered-stars
+            {
+                color:#FFCC36;
+            }
+            .clicked-stars
+            {
+                color:sandybrown;
+            }
+</style>
+
+
+<script>
+xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+var data;
+    $(document).ready(function(){
+        $("lt").mouseover(function(){
+            var current = $(this);
+            $("lt").each(function(index){
+                $(this).addClass("hovered-stars");
+                if(index == current.index())
+                {
+                    return false;
+                }
+            })
+        })
+        $("lt").mouseleave(function(){
+            $("lt").removeClass("hovered-stars");
+        });
+        $("lt i").click(function(){
+            $("lt").removeClass("clicked-stars");
+            $(".hovered-stars").addClass("clicked-stars");
+            var val=$(".clicked-stars").length;
+            
+            console.log(val);
+            
+        
+        $.ajax({
+            type: "POST",
+            url: "{{path('star',{id:moys.getId()})}}",
+            data: {value:val},
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+                $("#msg").html((response.toFixed(2))+"/5");
+            },
+            error: function(jqXHR, status, error) {
+            console.log(error);
+            
+        }
+        });
+        
+        });
+    
+    })
+</script>
+
+
+
+<div id="stars">
+                            <ul>
+                                <lt><i value="1" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="2" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="3" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="4" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="5" class="fa fa-star fa-fw"></i></lt>
+                                <div id="msg">{{moys.note | number_format(2) }}/5</div>
+                            </ul>
+                        </div>
+
+
+
+
+
+{% endblock %}

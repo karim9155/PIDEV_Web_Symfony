@@ -1,0 +1,6 @@
+# See the configuration reference at https://symfony.com/bundles/SchebTwoFactorBundle/6.x/configuration.html
+scheb_two_factor:
+    google:
+        enabled: true
+    security_tokens:
+

@@ -1,0 +1,12 @@
+#swiftmailer:
+    #url: '%env(MAILER_URL)%'
+    #spool: { type: 'memory' }
+
+swiftmailer:
+    transport: smtp
+    host: smtp.gmail.com
+    port: 587
+    encryption: tls
+    username: swift.transit2023
+    password: swifttransit123
+    spool: { type: 'memory' }    

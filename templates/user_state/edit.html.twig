@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mise à jour etats{% endblock %}
+
+{% block body %}
+<div class="row" style="text-align: center;align-items: center;justify-content: center;margin: 100px 1000px 30px;">   
+    <h1>Modifier UserState</h1>
+
+    {{ include('user_state/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_user_state_index') }}">Retour</a>
+
+    {{ include('user_state/_delete_form.html.twig') }}
+{% endblock %}

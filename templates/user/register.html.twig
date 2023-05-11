@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}create user{% endblock %}
+
+{% block body %}
+    <h1>inscription</h1>
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    {{ include('user/_form.html.twig') }}
+    <a href="{{ path('app_user_index') }}">Retour</a>
+{% endblock %}

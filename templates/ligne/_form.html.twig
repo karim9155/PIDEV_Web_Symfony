@@ -1,0 +1,31 @@
+<div style="display: flex; align-items: center; justify-content: center; margin-top: 40px;">
+  <div class="card" style="width: 600px;">
+    <div class="card-body">
+      <h5 class="card-title" style="text-align: center; margin-bottom: 30px;">Ajout de ligne de transport</h5>
+      
+      {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+     <a href="{{ path('app_ligne_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px"></i></a>
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Nom de ligne</label>
+        {{ form_widget(form.nom_ligne , {'attr': {'class': 'form-control select-dropdown'}} )}}
+        {{ form_errors(form.nom_ligne) }}
+      </div>
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Type de ligne</label>
+        {{ form_widget(form.type_ligne , {'attr': {'class': 'form-control'}} )}}
+        {{ form_errors(form.type_ligne) }}
+      </div>
+
+     
+
+      <div style="text-align: center;">
+        <button class="btn btn-primary" style="width: 120px;">{{ button_label|default('Save') }}</button>
+      </div>
+
+      {{ form_end(form) }}
+      
+    </div>
+  </div>
+</div>

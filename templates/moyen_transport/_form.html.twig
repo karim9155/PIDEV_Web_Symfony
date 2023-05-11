@@ -1,0 +1,68 @@
+{% block body %}
+
+<div style="display: flex; align-items: center; justify-content: center; margin-top: 40px;">
+  <div class="card" style="width: 600px;">
+    <div class="card-body">
+      <h5 class="card-title" style="text-align: center; margin-bottom: 30px;">Ajout de moyen de transport</h5>
+      
+      {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Matricule</label>
+        {{ form_widget(form.matricule , {'attr': {'class': 'form-control'}} )}}
+        {{ form_errors(form.matricule) }}
+      </div>
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Numéro</label>
+        {{ form_widget(form.num , {'attr': {'class': 'form-control'}} )}}
+        {{ form_errors(form.num) }}
+      </div>
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Capacité</label>
+        {{ form_widget(form.capacite , {'attr': {'class': 'form-control'}} )}}
+        {{ form_errors(form.capacite) }}
+      </div>
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Type Vehicule</label>
+        {{ form_widget(form.type_vehicule , {'attr': {'class': 'form-control select-dropdown'}} )}}
+        {{ form_errors(form.type_vehicule) }}
+      </div>
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Marque</label>
+        {{ form_widget(form.marque , {'attr': {'class': 'form-control'}} )}}
+        {{ form_errors(form.marque) }}
+      </div>
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Etat</label>
+        {{ form_widget(form.etat , {'attr': {'class': 'form-control'}} )}}
+        {{ form_errors(form.etat) }}
+      </div>
+                  
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Station</label>
+        {{ form_widget(form.station , {'attr': {'class': 'form-control'}} )}}
+        {{ form_errors(form.station) }}
+      </div>
+
+      <div class="mb-3">
+        <label for="inputText" class="form-label">Ligne</label>
+        {{ form_widget(form.id_ligne , {'attr': {'class': 'form-control'}} )}}
+        {{ form_errors(form.id_ligne) }}
+      </div>
+
+      <div style="text-align: center;">
+        <button class="btn btn-primary" style="width: 120px;">{{ button_label|default('Save') }}</button>
+      </div>
+
+      {{ form_end(form) }}
+      
+    </div>
+  </div>
+</div>
+
+{% endblock %}

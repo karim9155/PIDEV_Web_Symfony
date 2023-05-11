@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs {% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Gestion des Utilisateurs</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="row">
+            <div class="col-5-xlarge">
+              <div class="card top-selling overflow-scroll">
+                <div class="card-body pb-lg-4">
+                    <div class="datatable-top">
+                        <div class="datatable-dropdown">
+                            <label>
+                                <select class="datatable-selector"><option value="5">5</option><option value="10" selected="">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option></select> entries per page
+                            </label>
+                        </div>
+                        <div class="datatable-search">
+                            <form id="search_user"  action="{{ path('search_name') }}" enctype="multipart/form-data" method="post">
+                                <input class="datatable-input" placeholder="Search..." type="text" title="Search user" id="search">
+                            </form>
+                        </div>
+                    </div>
+                  <table class="table table-borderless database">
+                    <thead>
+                      <tr>
+                          <th scope="col">Nom</th>
+                          <th scope="col">Prenom</th>
+                          <th scope="col">Username</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Numéro téléphone</th>
+                          <th scope="col">Carte identité</th>
+                          <th scope="col">Image</th>
+                          <th scope="col">Role</th>
+                          <th scope="col">Etat</th>
+                          <th scope="col">actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="content">
+                    {% for user in users %}
+                        <tr>
+                            <td >{{ user.nom }}</td>
+                            <td>{{ user.prenom }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.numTel }}</td>
+                            <td>{{ user.CIN }}</td>
+                            <td>{{ user.image }}</td>
+                            <td>{{ user.id_role.nom }}</td>
+                            <td>{{ user.id_state.status }}</td>
+
+                            <td>
+                                <a class="btn btn-outline-info" href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
+                                <a class="btn btn-outline-success" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                                {{ include('user/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="10">Pas d'utilisateurs</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div><!-- End Top Selling -->
+
+    <a href="{{ path('app_user_new') }}"><button class="btn btn-outline-success">Ajouter</button</a>
+
+    </div>
+    </section>
+</main>
+<script>
+    document.getElementById('search').addEventListener("input", function (evt) {
+        {% if not app.user %}
+        window.location.replace('{{ path('security_login') }}');
+        {% else %}
+        var data = '&search='+$('#search').val();
+        var url = $('#search_user').attr('action');
+        $.ajax({
+            url: url,
+            type : 'POST',
+            data : data,
+            dataType: 'json',
+            cache: false,
+            success: function (response) {
+                $('#content').empty();
+                var users = response.users;
+                var userobj;
+                users.forEach(user => {
+                    userobj=JSON.parse(user);
+                    $('#content').append("<tr>"+
+                        "<td>"+userobj.nom+"</td>"+
+                        "<td>"+userobj.prenom+"</td>"+
+                        "<td>"+userobj.username+"</td>"+
+                        "<td>"+userobj.email+"</td>"+
+                        "<td>"+userobj.num_tel+"</td>"+
+                        "<td>"+userobj.CIN+"</td>"+
+                        "<td>"+userobj.image+"</td>"+
+                        "<td>"+userobj.id_role.nom+"</td>"+
+                        "<td>"+userobj.id_state.status+"</td>"+
+
+                        "<td>"+
+                        "<a class=\"btn btn-outline-info\" href='http://localhost:8000/user/"+userobj.id+"'> Afficher</a>"+
+                        "<a class=\"btn btn-outline-success\" href='http://localhost:8000/user/"+userobj.id+"/edit'> Modifier</a>"+
+                        "<a class=\"btn btn-outline-danger\" href='http://localhost:8000/user/"+userobj.id+"/delete'> Supprimer</a>"
+                        +"</td>"+
+                        "<td></td>"+
+
+                        +"</tr>"
+                    )
+                    console.log(userobj)
+
+                })
+
+            }
+        });
+        return false;
+        {% endif %}
+    }, false);
+    function FilterMultiple() {
+
+    }
+</script>
+{% endblock %}

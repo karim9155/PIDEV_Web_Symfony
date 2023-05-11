@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Commune{% endblock %}
+
+{% block body %}
+
+    <h1 style=" margin-left:350px; margin-top:80px">Create new Commune</h1>
+    <div style="display: flex ;align-items: center;justify-content: center;margin-top:100px; margin-left:350px;margin-right:60px">
+
+    {{ include('commune/_form.html.twig') }}
+  
+
+    <a href="{{ path('app_commune_index') }}">back to list</a>
+      </div>
+{% endblock %}

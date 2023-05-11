@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Station index{% endblock %}
+
+{% block body %}
+    <h1 style=" margin-left:350px; margin-top:80px" >Station index</h1>
+   <div style="display: flex ;align-items: center;justify-content: center;margin-top:25px; margin-left:350px;margin-right:60px">
+
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Long_alt</th>
+                <th>actions</th>
+                <th>QR Code</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for station in stations %}
+            <tr>
+                <td>{{ station.id }}</td>
+                <td>{{ station.longAlt }}</td>
+                <td>
+                    <a href="{{ path('app_station_show', {'id': station.id}) }}">show</a>
+                    <a href="{{ path('app_station_edit', {'id': station.id}) }}">edit</a>
+                </td>
+                <td>
+                            {% if station.longAlt is not null %}
+                                  <a href="{{ path('app_station_generate_qr_code', {'id': station.id}) }}" id="generate-qr-code">Generate QR code</a>
+                            {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_station_new') }}">Create new</a>
+    </div>
+{% endblock %}

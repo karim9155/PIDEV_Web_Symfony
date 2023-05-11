@@ -1,0 +1,72 @@
+{#{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ticket{% endblock %}
+
+{% block body %}
+    <h1>Edit Ticket</h1>
+
+    {{ include('ticket/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_ticket_index') }}">back to list</a>
+
+    {{ include('ticket/_delete_form.html.twig') }}
+    
+{% endblock %}#}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ticket{% endblock %}
+
+{% block body %}
+<center>
+    <div id="main">
+        <!-- Post -->
+        <section class="post">
+        <div style="margin-right:1000px">
+				<a href="{{ path('app_ticket_index') }}" style="font-size: 24px">
+					<i class="bi bi-arrow-left-circle-fill"></i>
+					Back to list</a>
+			</div>
+            <br>
+            <header class="major">
+             <h1><i class="bi bi-pencil-square me-2"></i>Modifier Ticket</h1>
+            </header>
+
+            <div class="section-content">
+                {{ form_start(form , {'attr': {'class':'form-horizontal','novalidate':'novalidate'}} ) }}
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.nom_ticket, {'label':'Le Type de votre Ticket' ,'attr':{'placeholder': 'Ajouter le type ticket...'}}) }}  
+                    </fieldset>
+                </div>
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.prix, {'label':'Le Prix de votre Ticket' ,'attr':{'placeholder': 'price...'}}) }}  
+                    </fieldset>
+                </div>
+
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.status, {'label':'Status Ticket' ,'attr':{'placeholder': 'status..'}}) }}
+                    </fieldset>
+                </div>
+                
+              {#this input field is hidden idReservation #}
+                   <div class="col-md-12">
+              <fieldset>
+              {{ form_row(form.id_reservation, {'label': 'idReservation', 'attr': {'placeholder': 'ticket....'}}) }}
+              </fieldset>
+               </div>
+              
+               <span class="d-inline-block">
+                        <button type= "submit" class="btn btn-success"><i class="bi bi-pencil me-2"></i>Modifier Ticket </button>  
+               </span>
+                <span class="d-inline-block">
+                {{ form_end(form) }}
+                   {{ include('ticket/_delete_form.html.twig') }}
+               </span >
+            </div>
+        </section>
+    </div>
+    </center>
+{% endblock %}

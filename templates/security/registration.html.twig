@@ -1,0 +1,20 @@
+{% extends 'Front/login.html.twig' %}
+
+
+{% block body %}
+
+   <div id="main">
+           <!-- Post -->
+	 <section class="post">
+		  <header class="major">
+		     <span class="date">Join Us</span>
+			   <h1>S'inscrire</h1>
+		  </header>
+    <div class="section-content">
+          
+   {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    {{ include('user/_form.html.twig') }}
+    </div>
+  </section>
+</div>
+{% endblock %}

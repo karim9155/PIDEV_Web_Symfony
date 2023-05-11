@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}nouveau role{% endblock %}
+
+{% block body %}
+    <div class="row" style="text-align: center;align-items: center;justify-content: center;margin: 100px 350px 30px;">
+    <h1>Ajouter role</h1>
+    {{ include('role/_form.html.twig') }}
+
+    <a class="btn btn-outline-info" href="{{ path('app_role_index') }}">Retour</a>
+{% endblock %}

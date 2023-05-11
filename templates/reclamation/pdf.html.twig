@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		{% block title %}
+			<title>Details De Reclamation</title>
+		{% endblock %}
+        
+		<!-- Bootstrap icons CSS -->
+		{% block css %}
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
+			<link rel="stylesheet" type="text/css" href="http://localhost/PIDEV-VORTEX-WEB-Symfony-3A10/templates/reclamation/pdf.css">
+		{% endblock %} 
+
+	</head>
+
+	{% block body %}
+		<body>
+			<div class="container">
+			    <img src="http://localhost/PIDEV-VORTEX-WEB-Symfony-3A10/public/Back/img/swift.png" alt="My Image" class="logo">
+				{% for reclamation in reclamation %}
+					<h2>Merci d'avoir diposé votre réclamation cher :
+						{{ reclamation.idUser.nom }}
+						{{ reclamation.idUser.prenom }}
+					</h2>
+					<table class="info">
+						<caption>Détails de votre réclamation :</caption>
+						<thead>
+							<tr>
+								<th>Sujet de réclamation</th>
+								<th>Texte de réclamation</th>
+								<th>Statut</th>
+								<th>Texte de réponse</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{ reclamation.objet }}</td>
+								<td>{{ reclamation.message_rec }}</td>
+								<td>{{ reclamation.statut }}</td>
+							    <td>{{ reclamation.reponse.text_rep }}</td>
+							</tr>
+						</tbody>
+					</table>
+				{% endfor %}
+
+				<h5>
+					Nous apprécions votre patience et votre fidélité
+				</h5>
+				<div class="rights-reserved">
+					All rights reserved &copy; 2023
+					<h4>
+						-SwiftTransit-
+					</h4>
+				</div>
+			</div>
+		</body>
+	{% endblock %}
+</html>
+ 

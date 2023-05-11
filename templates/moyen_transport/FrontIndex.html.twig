@@ -1,0 +1,161 @@
+{% extends 'Front/front.html.twig'%}
+
+{% block title %}Moyen de Transport{% endblock %}
+
+{% block body %}
+<div id="main">
+           <!-- Post -->
+	 <section class="post">
+		  <header class="major">
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin: 100px 300px 100px">
+    <div class="col-lg-15">
+    <div class="card">
+    <div class="card-body">
+{# <div  style="text-align: center;"> #}
+    <h1>Les lignes urbaines</h1>
+      <a href="{{ path('app_moyen_transport_new') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px"></i></a>
+               <a class="btn btn-success" href="{{path('app_bot') }}">  BOT </a>
+
+    <div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Numéro</th>
+                <th scope="col">Type</th>
+                <th scope="col">Marque</th>
+                <th scope="col">Station</th>
+                <th scope="col">Ligne</th>
+                <th scope="col">Note</th>
+                <th scope="col">Action</th>
+                
+
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for moyen_transport in moyen_transports %}
+          {% if moyen_transport.typeVehicule == 'metro' %}
+            <tr>
+               
+  
+                <td>{{ moyen_transport.num }}</td>
+ 
+                <td>{{ moyen_transport.typeVehicule }}</td>
+                <td>{{ moyen_transport.marque }}</td>
+
+               <td>{{ moyen_transport.idLigne.nomLigne }}</td> 
+                <td>{{ moyen_transport.idLigne.typeLigne}}</td> 
+                <td>{{ moyen_transport.note|default(0) }}/5</td>
+                <td>
+                    <a class="btn btn-outline-success" href="{{ path('lignes_show', {'id': moyen_transport.id}) }}">Details</a>
+                     </td>
+                
+
+            </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Numéro</th>
+                <th scope="col">Type</th>
+                <th scope="col">Marque</th>
+                <th scope="col">Station</th>
+                <th scope="col">Ligne</th>
+                <th scope="col">Note</th>
+                <th scope="col">Action</th>
+                
+
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for moyen_transport in moyen_transports %}
+          {% if moyen_transport.typeVehicule == 'bus' %}
+            <tr>
+               
+  
+                <td>{{ moyen_transport.num }}</td>
+ 
+                <td>{{ moyen_transport.typeVehicule }}</td>
+                <td>{{ moyen_transport.marque }}</td>
+
+               <td>{{ moyen_transport.idLigne.nomLigne }}</td> 
+                <td>{{ moyen_transport.idLigne.typeLigne}}</td> 
+                <td>{{ moyen_transport.note|default(0) }}/5</td>
+                <td>
+                    <a class="btn btn-outline-success" href="{{ path('lignes_show', {'id': moyen_transport.id}) }}">Details</a>
+                     </td>
+                
+
+            </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Numéro</th>
+                <th scope="col">Type</th>
+                <th scope="col">Marque</th>
+                <th scope="col">Station</th>
+                <th scope="col">Ligne</th>
+                <th scope="col">Note</th>
+                <th scope="col">Action</th>
+               
+
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for moyen_transport in moyen_transports %}
+        {% if moyen_transport.typeVehicule == 'train' %}
+            <tr>
+               
+  
+                <td>{{ moyen_transport.num }}</td>
+ 
+                <td>{{ moyen_transport.typeVehicule }}</td>
+                <td>{{ moyen_transport.marque }}</td>
+
+                <td>{{ moyen_transport.idLigne.nomLigne }}</td> 
+                <td>{{ moyen_transport.idLigne.typeLigne}}</td>
+                 <td>{{ moyen_transport.note|default(0) }}/5</td>
+ 
+                <td>
+                    <a class="btn btn-outline-success" href="{{ path('lignes_show', {'id': moyen_transport.id}) }}">Details</a>
+                     </td>
+                
+
+            </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {# </div> #}
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    		  </header>
+       
+    </section>
+{% endblock %}

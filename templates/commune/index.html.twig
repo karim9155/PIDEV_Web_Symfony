@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commune index{% endblock %}
+
+{% block body %}
+    <h1 style=" margin-left:350px; margin-top:80px" >Commune index</h1>
+   <div style="display: flex ;align-items: center;justify-content: center;margin-top:25px; margin-left:350px;margin-right:60px">
+   <a href="{{ path('app_commune_new') }}">Create new</a>
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_commune</th>
+                <th>Long_alt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commune in communes %}
+            <tr>
+                <td>{{ commune.id }}</td>
+                <td>{{ commune.nomCommune }}</td>
+                <td>{{ commune.longAlt }}</td>
+                <td>
+                    <a href="{{ path('app_commune_show', {'id': commune.id}) }}">show</a>
+                    <a href="{{ path('app_commune_edit', {'id': commune.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+</div>
+
+
+    
+{% endblock %}

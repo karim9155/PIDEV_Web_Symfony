@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Tickets</title>
+		<!-- Bootstrap CSS -->
+		<link
+		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-hhUIlY/lkwggYM7E+B1XtzJQ2hK1L5nyPL2SAn5G5j5CtIF4YzcAqIG4O9O+/b1PrldMiktn+E//cL78laNp8w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+		<!-- Bootstrap Icons -->
+		<link
+		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" integrity="sha512-BZpK57r3a3+Fk8ASvPkcb7MJK/cxyNVd/QahOBB8Pv97f7fgZd6b0VktUW8sUw2LgH89IIVyT1++p8gUoKhPfw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+		<!-- Bootstrap JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.min.js" integrity="sha512-BuR+YdG7uhWgXkFiFx7VbR/E5ZS2JGXO8+OS5UMebzLljBP4c3ec+uy9nbBqbDDloifJihd86Z1Hx++opmpw+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				font-size: 14px;
+				margin: 0;
+				padding: 0;
+			}
+			.container {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+			.header {
+				background-color: #f2f2f2;
+				padding: 20px;
+				text-align: center;
+			}
+
+			h1 {
+				color: #333;
+				font-size: 36px;
+				margin: 0;
+			}
+			.ticket {
+				display: flex;
+				flex-wrap: wrap;
+				margin: 10px 0;
+				padding: 10px;
+				background-color: #f5f5f5;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+			}
+			.ticket__header {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				margin-bottom: 10px;
+			}
+			.ticket__logo {
+				width: 60px;
+				height: 60px;
+				margin-right: 10px;
+			}
+			.ticket__name {
+				font-size: 24px;
+				font-weight: bold;
+				margin: 0;
+			}
+			.ticket__date {
+				font-size: 16px;
+				margin: 0;
+				flex-grow: 1;
+				text-align: right;
+			}
+			.ticket__details {
+				flex-grow: 1;
+				margin-right: 20px;
+				padding: 10px;
+				border-right: 1px solid #ccc;
+			}
+			.ticket__property {
+				margin-bottom: 10px;
+			}
+			.ticket__property-label {
+				font-weight: bold;
+				margin-right: 10px;
+			}
+			.ticket__property-value {
+				color: #6c757d;
+			}
+			.ticket__total {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				margin-top: 10px;
+				padding-top: 10px;
+				border-top: 1px solid #ccc;
+			}
+			.ticket__total-label {
+				font-weight: bold;
+				margin-right: 10px;
+				flex-grow: 1;
+			}
+			.ticket__total-value {
+				font-size: 20px;
+				font-weight: bold;
+				color: #dc3545;
+			}
+		</style>
+	</head>
+	<body>
+		<div
+			class="container">
+			{#<img src="{{ img_src2 }}" alt="Ticket Logo" class="ticket__logo">#}
+			<div class="header" style="background-color: #FFA500; color: #ffffff; padding: 20px; border-radius: 10px;">
+				<h1>"Liste de vos billets"</h1>
+			</div>
+			{% for reservation in reservations %}
+				<div class="ticket">
+					<div class="ticket__header">
+						<img src="{{ img_src }}" alt="Ticket Logo" class="ticket__logo">
+						<h2 class="ticket__name">{{ reservation.typeTicket }}</h2>
+						<p class="ticket__date">
+							<i class="bi bi-calendar"></i>
+							{{ reservation.dateReservation|date('Y-m-d') }}</p>
+					</div>
+					<div class="ticket__details">
+						<div class="ticket__property">
+							<span class="ticket__property-label">Itinéraire:</span>
+							<span class="ticket__property-value">{{ reservation.id_it.ptsDepart }}
+								-
+								{{ reservation.id_it.ptsArrive }}</span>
+						</div>
+						<div class="ticket__property">
+							<span class="ticket__property-label">Date :</span>
+							<span class="ticket__property-value">{{ reservation.dateReservation|date('Y-m-d') }}</span>
+						</div>
+						<div class="ticket__property">
+							<span class="ticket__property-label">Heure de départ:</span>
+							<span class="ticket__property-value">{{ reservation.heureDepart|date('H:i') }}
+								h</span>
+						</div>
+						<div class="ticket__property">
+							<span class="ticket__property-label">Heure d'arrivée:</span>
+							<span class="ticket__property-value">{{ reservation.heureArrive|date('H:i') }}
+								h</span>
+						</div>
+						<div class="ticket__property">
+							<span class="ticket__property-label">Votre Moyen de transport:</span>
+							<span class="ticket__property-value">{{ reservation.id_moy.typeVehicule }}</span>
+						</div>
+						<div class="ticket__property">
+							<span class="ticket__property-label">Prix Billet:</span>
+							{% if reservation.id_ticket is not null and reservation.id_ticket.prix is not null %}
+								<span class="ticket__property-value">{{ reservation.id_ticket.prix }}
+									D</span>
+							{% else %}
+								<span class="ticket__property-value">N/A</span>
+							{% endif %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html></div>{% endfor %}</div></div></div></body></html>

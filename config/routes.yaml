@@ -1,0 +1,12 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+app_ticket_search:
+    path: /search
+    controller: App\Controller\TicketController::search
+    methods: GET
+
+
+ticket_pdf:
+    path: /pdf
+    controller: App\Controller\ReservationController::pdf

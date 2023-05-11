@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MoyenTransport{% endblock %}
+
+{% block body %}
+
+    <h1>Edit MoyenTransport</h1>
+
+    {{ include('moyen_transport/_form.html.twig', {'button_label': 'Update'}) }}
+ <div style="text-align: center;">
+    <a href="{{ path('app_moyen_transport_index') }}">back to list</a>
+
+    {{ include('moyen_transport/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

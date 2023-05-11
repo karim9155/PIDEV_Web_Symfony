@@ -1,0 +1,100 @@
+{% extends 'Front/front.html.twig' %}
+
+{% block body %}
+   <div id="main">
+           <!-- Post -->
+	 <article class="post featured">
+		  <header class="major">
+		     <span class="date">April 09, 2023</span>
+			  <h1><i class="fas fa-calendar"></i> Reserver Maintenant</h1>
+
+		  </header>
+    <div class="section-content">
+<div class="d-flex justify-content-center ">
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ type }} alert-dismissible fade show d-flex align-items-center">
+		  <i class="bi bi-check-circle me-2"></i>
+		<div>
+		{{ message }}
+		</div>
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+ 
+{% endfor %}
+{% endfor %}
+</div>
+<section class="post">
+            <div class="section-content">
+                {{ form_start(form , {'attr': {'class':'form-horizontal','novalidate':'novalidate'}} ) }}
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.date_reservation, {'label':'La Date de votre Reservation' ,'attr':{'placeholder': 'date...'}}) }}
+                     
+                    </fieldset>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.id_it, {'label':'Itineraire' ,'attr':{'placeholder': 'choisissez itineraire'}}) }}
+                    </fieldset>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.heure_depart, {'label':'L heure de votre depart ' ,'attr':{'placeholder': 'choisissez heure depart..'}}) }}
+                    </fieldset>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.heure_arrive, {'label':'L heure de votre arriver ' ,'attr':{'placeholder': 'choisissez heure_arrive...'}}) }}
+                    </fieldset>
+                </div>
+                <br>
+               <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.id_moy, {'label':'Moyen de Transport' ,'attr':{'placeholder': 'choisissez un moyen'}}) }}
+                    </fieldset>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <fieldset>
+                        {{ form_row(form.type_ticket, {'label':'Type Ticket' ,'attr':{'placeholder': 'Le type de ticket'}}) }}
+                    </fieldset>
+                </div>
+                <br>
+                <div class="col-md-12" style="display: none;">
+                    <fieldset>
+                        {{ form_row(form.status, {'label':'Statut' ,'attr':{'placeholder': 'status....' , 'style': 'display: none;'}}) }}
+                    </fieldset>
+                </div>
+           {#those fields iduser / idticket are hidden #}
+                <div class="col-md-12" style="display: none;">
+                <fieldset>
+               {{ form_row(form.id_client, {'label':'user' ,'attr':{'placeholder': 'user....', 'style': 'display: none;'}}) }}
+                </fieldset>
+                </div>
+              <div class="col-md-12" style="display: none;">
+              <fieldset>
+              {{ form_row(form.id_ticket, {'label': 'ticket', 'attr': {'placeholder': 'ticket....', 'style': 'display: none;'}}) }}
+              </fieldset>
+               </div>
+
+              <br>
+                <div class="col-md-12">
+                    <fieldset>
+                        <button type= "submit" class="btn btn-success"> Reserver ! </button>
+                    </fieldset>
+                </div>
+
+                {{ form_end(form) }}
+
+            </div>
+        </section>
+    </div>
+          
+  </article>
+  
+</div>
+{% endblock %}
